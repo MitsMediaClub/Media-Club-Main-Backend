@@ -4,8 +4,15 @@ const mongoose = require("mongoose");
 //Gets a single event
 const getEvent = async (req, res) => {
   console.log(req.body.eventId);
-  const event = await Event.findOne({ eventId: req.body.eventId });
-  res.status(200).json(event);
+  try {
+    const event = await Event.findOne({ eventId: req.body.eventId });
+    if (!event) {
+      return res.json({ error: "No such event!" });
+    }
+    res.status(200).json(event);
+  } catch (error) {
+    res.json({ badError: "Error" });
+  }
 };
 
 //Deletes a single event
