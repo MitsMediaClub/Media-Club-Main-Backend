@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const eventRoutes = require("./routes/events.js");
+const radioRoutes = require("./routes/radios.js");
 const mongoose = require("mongoose");
 
 // express app
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 // routes
 
 app.use("/api/events", eventRoutes);
+app.use("/api/radios", radioRoutes);
 
 //MongoDb Connection
 

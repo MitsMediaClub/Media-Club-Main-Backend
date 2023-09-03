@@ -2,16 +2,13 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const eventSchema = new Schema(
+const radioSchema = new Schema(
   {
-    eventName: {
+    radioName: {
       type: String,
       required: true,
     },
     imgUrl: {
-      type: String,
-    },
-    link: {
       type: String,
       required: true,
     },
@@ -19,20 +16,19 @@ const eventSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    picUrls: {
-      type: Array,
-      default: [],
-    },
-    eventId: {
-      type: String,
-      unique: true,
-      required: true,
-    },
-    bgUrl: {
+    radioId: {
       type: String,
       required: true,
     },
     writeUp: {
+      type: String,
+      required: false,
+    },
+    link: {
+      type: String,
+      required: true,
+    },
+    length: {
       type: String,
       required: true,
     },
@@ -40,4 +36,6 @@ const eventSchema = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Event", eventSchema);
+radioSchema.index({ radioId: 1 }, { unique: true });
+
+module.exports = mongoose.model("Radio", radioSchema);

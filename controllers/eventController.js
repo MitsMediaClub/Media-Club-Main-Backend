@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 
 //Gets a single event
 const getEvent = async (req, res) => {
-  console.log(req.body.eventId);
   try {
     const event = await Event.findOne({ eventId: req.body.eventId });
     if (!event) {
@@ -18,7 +17,6 @@ const getEvent = async (req, res) => {
 //Deletes a single event
 const deleteEvent = async (req, res) => {
   try {
-    console.log(req.body.eventId);
     const event = await Event.findOneAndDelete({ eventId: req.body.eventId });
     if (!event) {
       return res.json({ error: "No such event!" });
@@ -89,7 +87,6 @@ const createEvent = async (req, res) => {
       picUrls,
       eventId,
     });
-    console.log(event);
     res.status(200).json(event);
   } catch (error) {
     res.status(400).json({ error: error.message });
