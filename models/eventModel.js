@@ -36,6 +36,10 @@ const eventSchema = new Schema(
       type: String,
       required: true,
     },
+    drive: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

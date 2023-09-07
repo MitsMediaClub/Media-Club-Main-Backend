@@ -70,8 +70,17 @@ const getAllEvents = async (req, res) => {
 //Create new event
 
 const createEvent = async (req, res) => {
-  let { eventName, imgUrl, link, highlight, bgUrl, writeUp, picUrls, eventId } =
-    req.body.newEvent;
+  let {
+    eventName,
+    imgUrl,
+    link,
+    highlight,
+    bgUrl,
+    writeUp,
+    picUrls,
+    eventId,
+    drive,
+  } = req.body.newEvent;
 
   picUrls = picUrls.split(",");
 
@@ -86,6 +95,7 @@ const createEvent = async (req, res) => {
       writeUp,
       picUrls,
       eventId,
+      drive,
     });
     res.status(200).json(event);
   } catch (error) {
