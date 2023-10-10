@@ -14,5 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Create .env variable
+      run: |
+        touch .env
+        echo "MONGO_URL=${{ secrets.MONGO_URL }}" >> .env
+        echo "PORT=80" >> .env
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag backend:$(date +%s)
