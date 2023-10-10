@@ -81,8 +81,9 @@ const createEvent = async (req, res) => {
     eventId,
     drive,
   } = req.body.newEvent;
+  console.log(picUrls);
   picUrls = picUrls.split(",");
-
+  console.log(picUrls);
   // add new doc to db
   try {
     const event = await Event.create({
