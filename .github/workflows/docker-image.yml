@@ -21,3 +21,5 @@ jobs:
         echo "PORT=80" >> .env
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag backend:$(date +%s)
+    - name: Push the Docker image to the registry
+      run: docker push 
