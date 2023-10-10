@@ -40,6 +40,9 @@ const deleteEvents = async (req, res) => {
 //Updates a single event
 const updateEvent = async (req, res) => {
   try {
+    if (req.body.updatedEvent.picUrls) {
+      req.body.updatedEvent.picUrls = req.body.updatedEvent.picUrls.split(",");
+    }
     const event = await Event.findOneAndUpdate(
       { eventId: req.body.updatedEvent.eventId },
       {
@@ -81,9 +84,10 @@ const createEvent = async (req, res) => {
     eventId,
     drive,
   } = req.body.newEvent;
-  console.log(picUrls);
-  picUrls = picUrls.split(",");
-  console.log(picUrls);
+  if (picUrls) {
+    picUrls = picUrls.split(",");
+  }
+
   // add new doc to db
   try {
     const event = await Event.create({
