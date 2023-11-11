@@ -8,6 +8,7 @@ const {
   deleteRadio,
   getSingleRadio,
 } = require("../controllers/radioController.js");
+const requireAuth = require("../middleware/requireAuth.js");
 const router = express.Router();
 
 // Get highlighted radio
@@ -18,6 +19,9 @@ router.get("/", getAllRadios);
 
 //Get a single radio
 router.post("/radio", getSingleRadio);
+
+// require auth for modifying events
+router.use(requireAuth);
 
 //Updates an event
 router.post("/update", updateRadio);

@@ -3,31 +3,24 @@ const express = require("express");
 const eventRoutes = require("./routes/events.js");
 const radioRoutes = require("./routes/radios.js");
 const newsletterRoutes = require("./routes/newsletter.js");
+const userRoutes = require("./routes/user.js");
 const mongoose = require("mongoose");
 
 // express app
 const app = express();
 
+let cors = require("cors");
 // middleware
 
 app.use(express.json());
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
-  );
-  next();
-});
+app.use(cors());
 
 // routes
 
 app.use("/api/events", eventRoutes);
 app.use("/api/radios", radioRoutes);
 app.use("/api/newsletter", newsletterRoutes);
+app.use("/api/user", userRoutes);
 
 //MongoDb Connection
 

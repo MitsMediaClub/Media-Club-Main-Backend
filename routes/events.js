@@ -9,6 +9,7 @@ const {
   deleteEvent,
   deleteEvents,
 } = require("../controllers/eventController.js");
+const requireAuth = require("../middleware/requireAuth.js");
 
 // Get highlighted events
 router.get("/highlight", getEvents);
@@ -18,6 +19,9 @@ router.get("/", getAllEvents);
 
 //Get a single event
 router.post("/event", getEvent);
+
+// require auth for modifying events
+router.use(requireAuth);
 
 //Updates an event
 router.post("/update", updateEvent);
